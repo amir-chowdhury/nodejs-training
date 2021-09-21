@@ -1,6 +1,6 @@
 const { pipeline } = require('stream/promises');
-const fs = require('fs');
-const path = require('path');
+const { createReadStream, createWriteStream } = require('fs');
+const { join } = require('path');
 const csv = require('csvtojson');
 
 const filePath = "./csv/test.csv";
@@ -13,9 +13,9 @@ async function run() {
   };
 
   await pipeline(
-    fs.createReadStream(path.join(__dirname, filePath)),
+    createReadStream(join(__dirname, filePath)),
     csv(),
-    fs.createWriteStream(path.join(__dirname, writePath)),
+    createWriteStream(join(__dirname, writePath)),
     options
   );
   ac.abort();
