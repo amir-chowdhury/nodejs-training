@@ -1,4 +1,4 @@
-function reverseString(str) {
+function reverseString(str: string): string {
   if (!str) {
     return "";
   }
@@ -11,7 +11,7 @@ const readline = require('readline').createInterface({
 })
 
 const getInput = () => {
-  readline.question("Reverse string: ", entered => {
+  readline.question("Reverse string: ", (entered: string) => {
     if (entered === "") {
       console.log("Nothing entered!");
     } else if (entered === "exit") {
