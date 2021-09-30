@@ -5,7 +5,11 @@ import { UserService } from "../services/users";
 function getUser(req: Request, res: Response) {
   const { id } = req.params;
   const user = UserService.getUser(id);
-  res.json(user);
+  if (user === undefined) {
+    res.status(404).json({message: `user with id ${id} not found!`});
+  } else {
+    res.json(user);
+  }
 }
 
 function updateUser(req: Request, res: Response) {
@@ -29,7 +33,7 @@ function getUsers(req: Request, res: Response) {
 function createUser(req: Request, res: Response) {
   const { login, password, age } = req.body;
   const user = UserService.createUser({ login, password, age });
-  res.json(user);
+  res.status(201).json(user);
 }
 
 function getAutoSuggestUsers(req: Request, res: Response) {

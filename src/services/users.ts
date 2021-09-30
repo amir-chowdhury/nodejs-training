@@ -3,7 +3,7 @@ import { User } from '../models/users';
 
 let USERS = INITIAL_USER_DATA;
 
-function getUser(id: string): User {
+function getUser(id: string): User | undefined {
   return USERS.find(user => user.id === id);
 }
 
