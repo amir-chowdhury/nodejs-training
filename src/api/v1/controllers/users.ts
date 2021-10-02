@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../interfaces/users";
-import { UserService } from "../services/users";
+import { UserService } from "../services";
 
 function getUser(req: Request, res: Response) {
   const { id } = req.params;

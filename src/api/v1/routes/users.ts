@@ -1,21 +1,25 @@
 import { Router } from 'express';
-import { UserController } from '../controllers/users';
+import { UserController } from '../controllers';
 import { validateSchema } from '../middlewares/validate-schema';
-import { UserValidation } from '../validation/users';
+import { UserValidation } from '../validations';
 
-const router = Router();
+function getUserRoutes() {
+  const router = Router();
 
-router
-  .route('/')
-  .get(UserController.getUsers)
-  .post(validateSchema(UserValidation.create), UserController.createUser);
+  router
+    .route('/')
+    .get(UserController.getUsers)
+    .post(validateSchema(UserValidation.create), UserController.createUser);
+  
+  router.get('/suggest', UserController.getAutoSuggestUsers);
+  
+  router
+    .route('/:id')
+    .get(UserController.getUser)
+    .put(validateSchema(UserValidation.update), UserController.updateUser)
+    .delete(UserController.deleteUser);
 
-router.get('/suggest', UserController.getAutoSuggestUsers);
+  return router;
+}
 
-router
-  .route('/:id')
-  .get(UserController.getUser)
-  .put(validateSchema(UserValidation.update), UserController.updateUser)
-  .delete(UserController.deleteUser);
-
-export default router;
+export { getUserRoutes };
