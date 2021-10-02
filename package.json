@@ -2,10 +2,10 @@
   "name": "nodejs-training",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
+    "start": "ts-node .",
     "task1": "nodemon src/homework_task1/task1.ts",
     "task2": "nodemon src/homework_task1/task2.ts",
     "task3": "nodemon --exec 'babel-node -x .ts' -- src/homework_task1/task3.ts"
