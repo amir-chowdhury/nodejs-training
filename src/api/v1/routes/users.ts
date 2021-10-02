@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/users';
-import { validateSchema } from '../validation/utils';
+import { validateSchema } from '../middlewares/validate-schema';
 import { UserValidation } from '../validation/users';
 
 const router = Router();

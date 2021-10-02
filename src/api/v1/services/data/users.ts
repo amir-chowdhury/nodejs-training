@@ -1,5 +1,5 @@
 // temp
-import { User } from '../models/users';
+import { User } from '../../interfaces/users';
 
 export const INITIAL_USER_DATA: User[] = [
   { id: '1', login: 'user1', password: 'password1', age: 1, isDeleted: false },

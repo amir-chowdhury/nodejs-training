@@ -1,5 +1,5 @@
-import { INITIAL_USER_DATA } from '../data/users';
-import { User } from '../models/users';
+import { INITIAL_USER_DATA } from './data/users';
+import { User } from '../interfaces/users';
 
 let USERS = INITIAL_USER_DATA;
 

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { User } from '../models/users';
+import { User } from '../interfaces/users';
 
 const userSchemaRequired: Joi.ObjectSchema<User> = Joi.object({
   login: Joi.string()
