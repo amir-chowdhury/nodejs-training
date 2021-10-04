@@ -6,17 +6,17 @@ import csv from 'csvtojson'
 const filePath = './src/homework_task1/csv/test.csv'
 const writePath = './src/homework_task1/converted-csv-to-json.txt'
 
-async function run () {
+async function run (): Promise<void> {
   const ac = new AbortController()
   const options = {
-    signal: ac.signal,
+    signal: ac.signal
   }
 
   await pipeline(
     createReadStream(resolve(filePath)),
     csv(),
     createWriteStream(resolve(writePath)),
-    options,
+    options
   )
   ac.abort()
   console.log('Pipeline succeeded.')

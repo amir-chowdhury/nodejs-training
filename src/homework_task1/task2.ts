@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { pipeline } = require('stream/promises')
 const { createReadStream, createWriteStream } = require('fs')
 const { join } = require('path')
@@ -6,17 +7,17 @@ const csv = require('csvtojson')
 const filePath = './csv/test.csv'
 const writePath = './converted-csv-to-json.txt'
 
-async function run () {
+async function run (): Promise<void> {
   const ac = new AbortController()
   const options = {
-    signal: ac.signal,
+    signal: ac.signal
   }
 
   await pipeline(
     createReadStream(join(__dirname, filePath)),
     csv(),
     createWriteStream(join(__dirname, writePath)),
-    options,
+    options
   )
   ac.abort()
   console.log('Pipeline succeeded.')

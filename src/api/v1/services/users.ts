@@ -8,33 +8,39 @@ function getUser (id: string): User | undefined {
 }
 
 function getUsers (): User[] {
-  return USERS.sort()
+  return USERS
 }
 
 function createUser (userData: Omit<User, 'id' | 'isDeleted'>): User {
   const user: User = {
     ...userData,
     id: (USERS.length + 1).toString(), // TODO: could cause race condition
-    isDeleted: false,
+    isDeleted: false
   }
   USERS = [...USERS, user]
   return user
 }
 
 function updateUser (id: string, userData: Partial<User>): User {
-  const user: User = getUser(id)
-  const updatedUser: User = { ...user, ...userData }
-  const index = USERS.findIndex((user) => user.id === id)
-  USERS = [...USERS.slice(0, index), updatedUser, ...USERS.slice(index + 1)]
-  return updatedUser
+  const user = getUser(id)
+  if (user !== undefined) {
+    const updatedUser: User = { ...user, ...userData }
+    const index = USERS.findIndex((user) => user.id === id)
+    USERS = [...USERS.slice(0, index), updatedUser, ...USERS.slice(index + 1)]
+    return updatedUser
+  }
+  throw Error(`user with id ${id} not found!`)
 }
 
 function deleteUser (id: string): User {
-  const user: User = getUser(id)
-  const deletedUser: User = { ...user, isDeleted: true }
-  const index = USERS.findIndex((user) => user.id === id)
-  USERS = [...USERS.slice(0, index), deletedUser, ...USERS.slice(index + 1)]
-  return deletedUser
+  const user = getUser(id)
+  if (user !== undefined) {
+    const deletedUser: User = { ...user, isDeleted: true }
+    const index = USERS.findIndex((user) => user.id === id)
+    USERS = [...USERS.slice(0, index), deletedUser, ...USERS.slice(index + 1)]
+    return deletedUser
+  }
+  throw Error(`user with id ${id} not found`)
 }
 
 function getAutoSuggestUsers (loginSubString: string, limit: number): User[] {
@@ -54,5 +60,5 @@ export const UserService = {
   createUser,
   updateUser,
   deleteUser,
-  getAutoSuggestUsers,
+  getAutoSuggestUsers
 }

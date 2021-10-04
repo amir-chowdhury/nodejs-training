@@ -1,15 +1,17 @@
 import express from 'express'
+import { env } from 'process'
 import logger from 'loglevel'
 import { getRoutes } from './api/v1/routes'
 
-function startServer () {
+function startServer (): void {
   const app = express()
-  app.set('port', process.env.PORT || 3000)
+  const PORT = env.PORT ?? 3000
+  app.set('port', PORT)
   app.use(express.json())
   app.use('/api/v1', getRoutes())
 
-  app.listen(app.get('port'), () => {
-    logger.info(`⚡️[server]: Server is running at http://localhost:${app.get('port')}`)
+  app.listen(PORT, () => {
+    logger.info(`⚡️[server]: Server is running at http://localhost:${PORT}`)
   })
 }
 

@@ -11,7 +11,7 @@ const userSchemaRequired: Joi.ObjectSchema<User> = Joi.object({
     .integer()
     .min(4)
     .max(130)
-    .required(),
+    .required()
 })
 
 const userSchema: Joi.ObjectSchema<User> = Joi.object({
@@ -21,10 +21,10 @@ const userSchema: Joi.ObjectSchema<User> = Joi.object({
   age: Joi.number()
     .integer()
     .min(4)
-    .max(130),
+    .max(130)
 })
 
 export const UserValidation = {
   create: userSchemaRequired,
-  update: userSchema,
+  update: userSchema
 }

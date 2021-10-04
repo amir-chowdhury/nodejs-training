@@ -3,7 +3,7 @@ import { UserController } from '../controllers'
 import { validateSchema } from '../middlewares/validate-schema'
 import { UserValidation } from '../validations'
 
-function getUserRoutes () {
+function getUserRoutes (): Router {
   const router = Router()
 
   router

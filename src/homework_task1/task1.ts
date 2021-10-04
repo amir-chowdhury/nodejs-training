@@ -1,16 +1,17 @@
 function reverseString (str: string): string {
-  if (!str) {
+  if (str === '') {
     return ''
   }
   return str.split('').reverse().join('')
 }
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const readline = require('readline').createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 })
 
-const getInput = () => {
+const getInput = (): void => {
   readline.question('Reverse string: ', (entered: string) => {
     if (entered === '') {
       console.log('Nothing entered!')
