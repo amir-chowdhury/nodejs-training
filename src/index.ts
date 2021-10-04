@@ -1,11 +1,13 @@
 import logger from 'loglevel'
-import { startServer } from './start';
-import './config/config';
+import { env } from 'process'
+import { startServer } from './start'
+import './config/config'
 
-const isTest = process.env.NODE_ENV === 'test'
-// const logLevel = process.env.LOG_LEVEL || (isTest ? 'warn' : 'info')
-const logLevel = (isTest ? 'warn' : 'info');
+const isTest = env.NODE_ENV === 'test'
+const logLevel = (env.LOG_LEVEL !== undefined)
+  ? (env.LOG_LEVEL as logger.LogLevelDesc)
+  : (isTest ? 'warn' : 'info')
 
-logger.setLevel(logLevel);
+logger.setLevel(logLevel)
 
-startServer();
+startServer()

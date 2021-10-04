@@ -1,5 +1,5 @@
-import Joi from 'joi';
-import { User } from '../interfaces/users';
+import Joi from 'joi'
+import { User } from '../interfaces/users'
 
 const userSchemaRequired: Joi.ObjectSchema<User> = Joi.object({
   login: Joi.string()
@@ -12,7 +12,7 @@ const userSchemaRequired: Joi.ObjectSchema<User> = Joi.object({
     .min(4)
     .max(130)
     .required(),
-});
+})
 
 const userSchema: Joi.ObjectSchema<User> = Joi.object({
   login: Joi.string()
@@ -22,9 +22,9 @@ const userSchema: Joi.ObjectSchema<User> = Joi.object({
     .integer()
     .min(4)
     .max(130),
-});
+})
 
 export const UserValidation = {
   create: userSchemaRequired,
   update: userSchema,
-};
+}

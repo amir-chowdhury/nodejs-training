@@ -1,3 +1,3 @@
-import { UserValidation } from './users';
+import { UserValidation } from './users'
 
-export { UserValidation };
+export { UserValidation }
