@@ -10,6 +10,9 @@
     "task2": "nodemon src/homework_task1/task2.ts",
     "task3": "nodemon --exec 'babel-node -x .ts' -- src/homework_task1/task3.ts"
   },
+  "engines": {
+    "node": ">= 16.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amir-chowdhury/nodejs-training.git"
