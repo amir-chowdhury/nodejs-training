@@ -6,7 +6,7 @@ import { errorMiddleware } from './api/v1/middlewares/error'
 import { Server } from 'http'
 
 async function startServer (
-  { port = env.PORT ?? 3000 } = {}
+  { port = Number(env.PORT) ?? 3000 } = {}
 ): Promise<Server> {
   const app = express()
   app.set('port', port)
@@ -16,7 +16,7 @@ async function startServer (
 
   return await new Promise((resolve) => {
     const server = app.listen(port, () => {
-      logger.info(`⚡️[server]: Server is running at http://localhost:${port}`)
+      logger.info(`⚡️[server]: Server is running at http://localhost:${port}/api/v1/`)
       resolve(server)
     })
   })
